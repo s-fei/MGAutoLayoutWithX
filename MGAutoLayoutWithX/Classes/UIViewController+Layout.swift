@@ -31,7 +31,6 @@ extension UIViewController{
     func mg_viewWillLayoutSubviews() {
         mg_viewWillLayoutSubviews()
         mg_layoutWithSubviews(superView: view)
-        
     }
     
     func mg_layoutWithSubviews(superView: UIView){
@@ -62,7 +61,6 @@ extension UIViewController{
     
     /*! 坐标写死的自适应 */
     func mg_autoLayoutWithFrame(subView:UIView) {
-        
         if subView.isUIView() {
             mg_autoLayoutWithFrameHeight(subView: subView)
         }
@@ -115,7 +113,6 @@ extension UIViewController{
     
     /*! 约束改变高度 */
     func mg_autoLayoutWithConstraintHeight(subView:UIView) {
-        
         var isChangeHeight = false
         subView.constraints.forEach({ [weak subView] (constraint) in
             guard let `subView` = subView else { return }
