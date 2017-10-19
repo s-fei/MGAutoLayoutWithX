@@ -25,7 +25,6 @@ func mgSwizzleMethod(_ cls: Swift.AnyClass!,_ originalSelector:Selector,_ swizzl
     }
 }
 
-
 extension DispatchQueue {
     private static var onceTracker = [String]()
     

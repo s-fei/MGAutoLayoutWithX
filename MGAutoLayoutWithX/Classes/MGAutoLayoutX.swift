@@ -8,8 +8,10 @@
 
 import UIKit
 
-public var statusBarMargin:CGFloat = 24.0
+/*! 判断iphone-X */
+public var isIphone_X:Bool = (UIScreen.main.bounds.height == 812)
 
+public var statusBarMargin:CGFloat = isIphone_X ? 24.0:0.0
 
 /*! 判断是否是约束 */
 protocol AutoLayoutFetching {
@@ -47,11 +49,10 @@ extension UIView: AutoLayoutFetching {
             }
             return false
         })
-        return constraints.isEmpty && subConstraints.isEmpty
+        return !(constraints.isEmpty && subConstraints.isEmpty)
     }
     
     func isUIView() -> Bool {
         return self.isMember(of: UIView.self)
     }
 }
-

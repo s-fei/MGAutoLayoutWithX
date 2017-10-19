@@ -10,19 +10,21 @@
 extension UIApplication{
     
     fileprivate static let runOne:Void = {
-        UIViewController.awake()
+        UIViewController.mgawake()
     }()
     
     // Called before applicationDidFinishLaunching
     open override var next : UIResponder? {
-        UIApplication.runOne
+        if isIphone_X {
+            UIApplication.runOne
+        }
         return super.next
     }
 }
 
 extension UIViewController{
     
-    public static func awake(){
+    static func mgawake(){
         mgSwizzleMethod(self, #selector(UIViewController.viewWillLayoutSubviews), #selector(UIViewController.mg_viewWillLayoutSubviews))
     }
     
