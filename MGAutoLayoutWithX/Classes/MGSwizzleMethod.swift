@@ -10,7 +10,7 @@ import UIKit
 
 
 
-func mgSwizzleMethod(_ cls: Swift.AnyClass!,_ originalSelector:Selector,_ swizzledSelector:Selector){
+internal func mgSwizzleMethod(_ cls: Swift.AnyClass!,_ originalSelector:Selector,_ swizzledSelector:Selector){
     DispatchQueue.once(token: NSUUID().uuidString) {
         let originalMethod = class_getInstanceMethod(cls, originalSelector)
         let swizzledMethod = class_getInstanceMethod(cls, swizzledSelector)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MGAutoLayoutWithX
 
 class ViewController: UIViewController {
     @IBOutlet weak var topView: UIView!

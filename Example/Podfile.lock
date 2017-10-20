@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MGAutoLayoutWithX: b5f893aae0f662c29009593bbf89a7eaabc3c6a6
+  MGAutoLayoutWithX: 5e5c4045618cccb80532bd6cd9f8636ad3c12303
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 

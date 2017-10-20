@@ -5,22 +5,8 @@
 //  Created by song on 2017/10/19.
 //
 
-//MARK: - open class func initialize() Swift以后会不让使用  所以只能用这种取巧的方法啦
+import UIKit
 
-extension UIApplication{
-    
-    fileprivate static let runOne:Void = {
-        UIViewController.mgawake()
-    }()
-    
-    // Called before applicationDidFinishLaunching
-    open override var next : UIResponder? {
-        if isIphone_X {
-            UIApplication.runOne
-        }
-        return super.next
-    }
-}
 
 extension UIViewController{
     
@@ -30,6 +16,8 @@ extension UIViewController{
     
     func mg_viewWillLayoutSubviews() {
         mg_viewWillLayoutSubviews()
+        if self.isKind(of: UINavigationController.self) { return }
+        if !MGAutoLayoutWithX.shared.isAutoLayout { return }
         mg_layoutWithSubviews(superView: view)
     }
     
@@ -43,7 +31,6 @@ extension UIViewController{
     func mg_autoLayout(subView:UIView) {
         if subView.autoIdentifier == "isAutoLayout"  { return }
         if subView.bounds == CGRect.zero { return }
-        if self.isKind(of: UINavigationController.self) { return }
         if subView.isKind(of: UIScrollView.self) { return }
         guard let window = UIApplication.shared.delegate?.window else { return }
         let statusBarFrame = UIApplication.shared.statusBarFrame

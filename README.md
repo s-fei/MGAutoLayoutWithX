@@ -19,6 +19,11 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'MGAutoLayoutWithX'
 ```
+##AppDelegate:
+
+```ruby
+MGAutoLayoutWithX.shared.isAutoLayout = true
+```
 
 ## Author
 
