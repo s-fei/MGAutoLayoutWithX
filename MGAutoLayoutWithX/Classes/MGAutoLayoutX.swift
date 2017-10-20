@@ -13,6 +13,8 @@ public var isIphone_X:Bool = (UIScreen.main.bounds.height == 812)
 
 public var statusBarMargin:CGFloat = isIphone_X ? 24.0:0.0
 
+public var bottomViewMargin:CGFloat = isIphone_X ? 34.0:0.0
+
 
 public class MGAutoLayoutWithX: NSObject {
     

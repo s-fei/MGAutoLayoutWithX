@@ -45,6 +45,70 @@ extension UIView: AutoLayoutFetching {
         return !(constraints.isEmpty && subConstraints.isEmpty)
     }
     
+    /*! 是否使用UILayoutGuide来约束 如果使用 就无需手动添加自适应啦 */
+    func isUseUILayoutGuideWithTop() -> Bool {
+        guard let `superView` = superview else { return false }
+        for constraint in superView.constraints {
+            if let firstView = constraint.firstItem as? UIView,
+                let secondItem = constraint.secondItem,
+                firstView == self {
+                if secondItem.classForCoder == NSClassFromString("_UILayoutGuide") &&
+                    constraint.secondAttribute == .bottom  {
+                    return true
+                }
+                if secondItem.classForCoder == NSClassFromString("UILayoutGuide") &&
+                    constraint.secondAttribute == .top {
+                    return true
+                }
+            }
+            if let firstItem = constraint.firstItem,
+                let secondView = constraint.secondItem as? UIView,
+                secondView == self{
+                if firstItem.classForCoder == NSClassFromString("_UILayoutGuide") &&
+                    constraint.firstAttribute == .bottom  {
+                    return true
+                }
+                if firstItem.classForCoder == NSClassFromString("UILayoutGuide") &&
+                    constraint.firstAttribute == .top {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    /*! 是否使用UILayoutGuide来约束 如果使用 就无需手动添加自适应啦 */
+    func isUseUILayoutGuideWithBottom() -> Bool {
+        guard let `superView` = superview else { return false }
+        for constraint in superView.constraints {
+            if let firstView = constraint.firstItem as? UIView,
+                let secondItem = constraint.secondItem,
+                firstView == self {
+                if secondItem.classForCoder == NSClassFromString("_UILayoutGuide") &&
+                    constraint.secondAttribute == .top  {
+                    return true
+                }
+                if secondItem.classForCoder == NSClassFromString("UILayoutGuide") &&
+                    constraint.secondAttribute == .bottom {
+                    return true
+                }
+            }
+            if let firstItem = constraint.firstItem,
+                let secondView = constraint.secondItem as? UIView,
+                secondView == self{
+                if firstItem.classForCoder == NSClassFromString("_UILayoutGuide") &&
+                    constraint.firstAttribute == .top  {
+                    return true
+                }
+                if firstItem.classForCoder == NSClassFromString("UILayoutGuide") &&
+                    constraint.firstAttribute == .bottom {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     func isUIView() -> Bool {
         return self.isMember(of: UIView.self)
     }

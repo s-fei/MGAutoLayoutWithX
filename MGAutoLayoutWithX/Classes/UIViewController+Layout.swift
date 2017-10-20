@@ -11,11 +11,12 @@ import UIKit
 extension UIViewController{
     
     static func mgawake(){
-        mgSwizzleMethod(self, #selector(UIViewController.viewWillLayoutSubviews), #selector(UIViewController.mg_viewWillLayoutSubviews))
+        mgSwizzleMethod(self, #selector(UIViewController.viewDidLayoutSubviews), #selector(UIViewController.mg_viewDidLayoutSubviews))
     }
     
-    func mg_viewWillLayoutSubviews() {
-        mg_viewWillLayoutSubviews()
+    func mg_viewDidLayoutSubviews() {
+        mg_viewDidLayoutSubviews()
+        print("ssss:\(self.view.subviews)")
         if self.isKind(of: UINavigationController.self) { return }
         if !MGAutoLayoutWithX.shared.isAutoLayout { return }
         mg_layoutWithSubviews(superView: view)
@@ -24,123 +25,42 @@ extension UIViewController{
     func mg_layoutWithSubviews(superView: UIView){
         superView.subviews.forEach { [weak self] (subView) in
             guard let `self` = self else { return }
-            self.mg_autoLayout(subView:subView)
+            self.mg_autoLayoutWithTopView(subView:subView)
         }
     }
     
-    func mg_autoLayout(subView:UIView) {
+    func mg_autoLayoutWithTopView(subView:UIView) {
         if subView.autoIdentifier == "isAutoLayout"  { return }
         if subView.bounds == CGRect.zero { return }
         if subView.isKind(of: UIScrollView.self) { return }
+        if subView.classForCoder == NSClassFromString("_UILayoutGuide") { return }
         guard let window = UIApplication.shared.delegate?.window else { return }
         let statusBarFrame = UIApplication.shared.statusBarFrame
         let rectForW = subView.convert(subView.bounds, to: window)
-        if !statusBarFrame.intersects(rectForW) { return }
         
-        if subView.isAutoLayout() {
-            mg_autoLayoutWithConstraints(subView: subView)
+        if statusBarFrame.intersects(rectForW) {
+            if subView.isAutoLayout() {
+                if !subView.isUseUILayoutGuideWithTop(){
+                    mg_autoLayoutTopWithConstraints(subView: subView)
+                }
+            }
+            else {
+                mg_autoLayoutTopWithFrame(subView: subView)
+            }
         }
-        else {
-            mg_autoLayoutWithFrame(subView: subView)
+        
+        let bottomAppFrame = CGRect(x: 0, y: UIScreen.main.bounds.height - bottomViewMargin, width: UIScreen.main.bounds.width, height:bottomViewMargin )
+        if bottomAppFrame.intersects(rectForW) {
+            if subView.isAutoLayout() {
+                if !subView.isUseUILayoutGuideWithBottom() {
+                    mg_autoLayoutBottomWithConstraints(subView: subView)
+                }
+            }
+            else {
+                mg_autoLayoutBottomWithFrame(subView: subView)
+            }
         }
+        
         subView.autoIdentifier = "isAutoLayout"
     }
-    
-    /*! 坐标写死的自适应 */
-    func mg_autoLayoutWithFrame(subView:UIView) {
-        if subView.isUIView() {
-            mg_autoLayoutWithFrameHeight(subView: subView)
-        }
-        else {
-            mg_autoLayoutWithFrameTop(subView: subView)
-        }
-    }
-    
-    /*! 约束自适应 */
-    func mg_autoLayoutWithConstraints(subView:UIView) {
-        if subView.isUIView() {
-            mg_autoLayoutWithConstraintHeight(subView: subView)
-        }
-        else {
-            mg_autoLayoutWithConstraintTop(subView: subView)
-        }
-    }
-    
-    
-    /*! 坐标写死不改变高度 */
-    func mg_autoLayoutWithFrameTop(subView:UIView) {
-        var subFrame = subView.frame
-        subFrame.origin.y += statusBarMargin
-        subView.frame = subFrame
-    }
-    
-    /*! 坐标写死改变高度 */
-    func mg_autoLayoutWithFrameHeight(subView:UIView) {
-        var subFrame = subView.frame
-        subFrame.size.height += statusBarMargin
-        subView.frame = subFrame
-        mg_layoutWithTopSubView(superView: subView)
-    }
-    
-    /*! 约束不改变高度 */
-    func mg_autoLayoutWithConstraintTop(subView:UIView) {
-        guard let superview = subView.superview else { return }
-        superview.constraints.forEach { [weak subView](constraint) in
-            guard let `subView` = subView else { return }
-            if let firstView = constraint.firstItem as? UIView, firstView == subView &&
-                constraint.firstAttribute == .top  {
-                constraint.constant += statusBarMargin
-            }
-            else if let secondView = constraint.secondItem as? UIView, secondView == subView &&
-                constraint.secondAttribute == .top  {
-                constraint.constant -= statusBarMargin
-            }
-        }
-    }
-    
-    /*! 约束改变高度 */
-    func mg_autoLayoutWithConstraintHeight(subView:UIView) {
-        var isChangeHeight = false
-        subView.constraints.forEach({ [weak subView] (constraint) in
-            guard let `subView` = subView else { return }
-            if let firstView = constraint.firstItem as? UIView, firstView == subView &&
-                constraint.firstAttribute == .height {
-                constraint.constant += statusBarMargin
-                isChangeHeight = true
-            }
-        })
-        if isChangeHeight {
-            subView.constraints.forEach({ [weak subView] (constraint) in
-                guard let `subView` = subView else { return }
-                if let firstView = constraint.firstItem as? UIView, firstView == subView &&
-                    constraint.firstAttribute == .top {
-                    constraint.constant -= statusBarMargin
-                }
-                else if let firstView = constraint.firstItem as? UIView, firstView == subView &&
-                    constraint.firstAttribute == .centerY {
-                    constraint.constant -= statusBarMargin/2
-                }
-                else if let secondView = constraint.secondItem as? UIView, secondView == subView &&
-                    constraint.secondAttribute == .top {
-                    constraint.constant += statusBarMargin
-                }
-                else if let secondView = constraint.secondItem as? UIView, secondView == subView &&
-                    constraint.secondAttribute == .centerY {
-                    constraint.constant += statusBarMargin/2
-                }
-            })
-            mg_layoutWithTopSubView(superView: subView)
-        }
-    }
-    
-    func mg_layoutWithTopSubView(superView:UIView) {
-        superView.subviews.forEach { (subView) in
-            if !subView.isAutoLayout() {
-                var subFrame = subView.frame
-                subFrame.origin.y += statusBarMargin
-                subView.frame = subFrame
-            }
-        }
-    }
-    
 }
