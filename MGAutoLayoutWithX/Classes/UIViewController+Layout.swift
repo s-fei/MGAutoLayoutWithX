@@ -16,7 +16,6 @@ extension UIViewController{
     
     func mg_viewDidLayoutSubviews() {
         mg_viewDidLayoutSubviews()
-        print("ssss:\(self.view.subviews)")
         if self.isKind(of: UINavigationController.self) { return }
         if !MGAutoLayoutWithX.shared.isAutoLayout { return }
         mg_layoutWithSubviews(superView: view)
