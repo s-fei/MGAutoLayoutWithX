@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 
 extension UIViewController{
@@ -32,6 +33,7 @@ extension UIViewController{
         if subView.autoIdentifier == "isAutoLayout"  { return }
         if subView.bounds == CGRect.zero { return }
         if subView.isKind(of: UIScrollView.self) { return }
+        if subView.isKind(of: MKMapView.self) { return }
         if subView.classForCoder == NSClassFromString("_UILayoutGuide") { return }
         guard let window = UIApplication.shared.delegate?.window else { return }
         let statusBarFrame = UIApplication.shared.statusBarFrame

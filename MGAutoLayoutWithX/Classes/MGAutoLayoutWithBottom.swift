@@ -44,7 +44,6 @@ extension UIViewController{
         subFrame.origin.y -= bottomViewMargin
         subFrame.size.height += bottomViewMargin
         subView.frame = subFrame
-        mg_layoutWithTopSubView(superView: subView)
     }
     
     /*! 约束不改变高度 */
