@@ -18,6 +18,7 @@ internal protocol AutoLayoutFetching {
 }
 
 private var autoIdentifierKey: Void?
+private var isCustomViewKey: Void?
 
 extension UIView: AutoLayoutFetching {
     
@@ -27,6 +28,15 @@ extension UIView: AutoLayoutFetching {
         }
         set(newValue) {
             objc_setAssociatedObject(self, &autoIdentifierKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    public var isCustomView: Bool? {
+        get {
+            return (objc_getAssociatedObject(self, &isCustomViewKey) as? Bool)
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &isCustomViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -110,6 +120,7 @@ extension UIView: AutoLayoutFetching {
     }
     
     func isUIView() -> Bool {
-        return self.isMember(of: UIView.self)
+        return self.isMember(of: UIView.self) || self.isCustomView == true
     }
 }
+
