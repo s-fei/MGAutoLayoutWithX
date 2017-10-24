@@ -1,5 +1,5 @@
 PODS:
-  - MGAutoLayoutWithX (0.0.2)
+  - MGAutoLayoutWithX (0.0.3)
   - Nimble (7.0.2)
   - Quick (1.2.0)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MGAutoLayoutWithX: b6c8c00c9908683a03d241df3519d2943feb81d5
+  MGAutoLayoutWithX: bb870d9b4994d580e3a20aebe128a3e02c40b73c
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 

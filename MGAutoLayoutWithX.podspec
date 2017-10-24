@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MGAutoLayoutWithX/Classes/**/*'
-  s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'MapKit', 'WebKit'
   
   # s.resource_bundles = {
   #   'MGAutoLayoutWithX' => ['MGAutoLayoutWithX/Assets/*.png']
