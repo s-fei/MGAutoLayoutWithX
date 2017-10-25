@@ -33,6 +33,7 @@ extension UIViewController{
     func mg_autoLayoutWithTopView(subView:UIView) {
         if subView.autoIdentifier == "isAutoLayout"  { return }
         if subView.bounds == CGRect.zero { return }
+        if subView.bounds.height > view.frame.height/2 { return }
         if subView.isKind(of: UITabBar.self) { return }
         if subView.isKind(of: UINavigationBar.self) { return }
         if subView.isKind(of: UIScrollView.self) { return }
