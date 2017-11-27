@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGAutoLayoutWithX'
-  s.version          = '0.0.5'
+  s.version          = '1.0.0'
   s.summary          = ' MG 自适应iphone x'
 
 # This description is used to generate tags and improve search results.
@@ -39,5 +39,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  # s.dependency 'AFNetworking'
 end

@@ -16,7 +16,7 @@ extension UIViewController{
         mgSwizzleMethod(self, #selector(UIViewController.viewDidLayoutSubviews), #selector(UIViewController.mg_viewDidLayoutSubviews))
     }
     
-    func mg_viewDidLayoutSubviews() {
+    @objc func mg_viewDidLayoutSubviews() {
         mg_viewDidLayoutSubviews()
         if self.isKind(of: UINavigationController.self) { return }
         if !MGAutoLayoutWithX.shared.isAutoLayout { return }

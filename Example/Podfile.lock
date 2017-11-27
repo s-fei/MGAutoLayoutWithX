@@ -1,6 +1,6 @@
 PODS:
-  - MGAutoLayoutWithX (0.0.3)
-  - Nimble (7.0.2)
+  - MGAutoLayoutWithX (1.0.0)
+  - Nimble (7.0.3)
   - Quick (1.2.0)
 
 DEPENDENCIES:
@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MGAutoLayoutWithX: bb870d9b4994d580e3a20aebe128a3e02c40b73c
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  MGAutoLayoutWithX: eaf34df00dc1262a0b27b0fa79a76a223af84321
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
 PODFILE CHECKSUM: 181d2f887f3126ebdbb238a55fb8b301d4481901
