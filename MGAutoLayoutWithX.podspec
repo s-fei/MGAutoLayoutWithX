@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGAutoLayoutWithX'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = ' MG 自适应iphone x'
 
 # This description is used to generate tags and improve search results.
