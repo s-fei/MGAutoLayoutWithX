@@ -22,9 +22,9 @@ public class MGAutoLayoutWithX: NSObject {
         UIViewController.mgawake()
     }()
     
-    public static let shared:MGAutoLayoutWithX = MGAutoLayoutWithX()
+    @objc public static let shared:MGAutoLayoutWithX = MGAutoLayoutWithX()
     
-    public var isAutoLayout:Bool = true {
+    @objc public var isAutoLayout:Bool = true {
         didSet{
             if isAutoLayout && isIphone_X {
                 MGAutoLayoutWithX.runOne
