@@ -9,7 +9,7 @@
 import UIKit
 
 /*! 判断iphone-X */
-public var isIphone_X:Bool = (UIScreen.main.bounds.height == 812)
+public var isIphone_X:Bool = (UIScreen.main.bounds.height >= 812)
 
 public var statusBarMargin:CGFloat = isIphone_X ? 24.0:0.0
 

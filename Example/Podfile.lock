@@ -1,22 +1,16 @@
 PODS:
-  - MGAutoLayoutWithX (1.0.0)
-  - Nimble (7.0.3)
-  - Quick (1.2.0)
+  - MGAutoLayoutWithX (1.0.1)
 
 DEPENDENCIES:
   - MGAutoLayoutWithX (from `../`)
-  - Nimble (~> 7.0.2)
-  - Quick (~> 1.2.0)
 
 EXTERNAL SOURCES:
   MGAutoLayoutWithX:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  MGAutoLayoutWithX: eaf34df00dc1262a0b27b0fa79a76a223af84321
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  MGAutoLayoutWithX: e2cadf7b976b94d4a5b817ecb7101b18a0a6eac9
 
-PODFILE CHECKSUM: 181d2f887f3126ebdbb238a55fb8b301d4481901
+PODFILE CHECKSUM: 1086f9881b150ba896e76eb807b6857cdc6faf59
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.0.beta.1
