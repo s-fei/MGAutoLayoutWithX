@@ -1,5 +1,5 @@
 PODS:
-  - MGAutoLayoutWithX (1.0.1)
+  - MGAutoLayoutWithX (1.1.0)
 
 DEPENDENCIES:
   - MGAutoLayoutWithX (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MGAutoLayoutWithX: e2cadf7b976b94d4a5b817ecb7101b18a0a6eac9
+  MGAutoLayoutWithX: 0fab84a1055f862cf26b38d350fc28a8f98ca6d5
 
 PODFILE CHECKSUM: 1086f9881b150ba896e76eb807b6857cdc6faf59
 

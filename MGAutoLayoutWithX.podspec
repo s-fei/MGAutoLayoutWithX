@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-                   自适应iphone x,自适应iphone x
+                   自适应iphone x xr xs xsMax，不需在业务中调用代码
                        DESC
 
   s.homepage         = 'https://github.com/spf-iOS/MGAutoLayoutWithX'
